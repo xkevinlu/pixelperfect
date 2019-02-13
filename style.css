@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Press+Start+2P');
+
+html {
+  background-color:#121d38;
+  color:#FFFFFF;
+  font-family: 'Inconsolata', monospace;
+}
+
+#logo {
+  font-family: 'Press Start 2P', cursive;
+}
+
+#scorebox {
+  display:flex;
+  justify-content: space-between;
+  width:50%;
+  margin:auto;
+}
+
+#scorebox div {
+  align-self:center;
+}
+
+.container {
+  border:1px solid white;
+  width:400px;
+  height:30px;
+  margin:20px auto;
+  position:relative;
+}
+
+#box {
+  width:750px;
+  height:220px;
+  display:flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin:auto;
+}
+
+div#correct, div#incorrect {
+  width:350px;
+  height:200px;
+  margin:0px 10px;
+  cursor: pointer;
+  border-radius:10px;
+  transition: width 0.5s ease-in-out;
+  position:relative;
+}
+
+div img {
+  width:100%;
+  border-radius:10px;
+}
+
+#message, #instruction {
+  text-align:center;
+}
+
+#indicator {
+  width:50px;
+  height:50px;
+  background-color:green;
+  border-radius:25px;
+  position:absolute;
+  bottom:0;
+  right:0;
+}
+
+#review-btns {
+  text-align:center;
+  display:none;
+}
+button {
+  width:140px;
+  height:60px;
+  margin: 0px 10px 0px 10px;
+  font-size:1em;
+  border-radius:5px;
+  cursor:pointer;
+  font-family: 'Inconsolata', monospace;
+}
+
+#levelbox {
+  width:400px;
+  height:30px;
+  border:1px solid blue;
+  border-radius:20px;
+  margin:20px auto;
+  display:flex;
+}
+
+#progress {
+  width:10%;
+  background-color:blue;
+  border-radius:20px;
+  transition:width 0.5s ease-in-out;
+  text-align:center;
+}
+
+#end_view {
+  display:none;
+  text-align:center;
+  margin-top:20%;
+}
+
+button#play_again{
+  width:100px;
+  height:50px;
+}
