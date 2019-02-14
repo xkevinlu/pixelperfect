@@ -4,10 +4,12 @@ html {
   background-color:#121d38;
   color:#FFFFFF;
   font-family: 'Inconsolata', monospace;
+  padding-top:20px;
 }
 
 #logo {
   font-family: 'Press Start 2P', cursive;
+  font-size:0.7em;
 }
 
 #scorebox {
@@ -15,6 +17,7 @@ html {
   justify-content: space-between;
   width:50%;
   margin:auto;
+  font-size:1.5em;
 }
 
 #scorebox div {
@@ -30,8 +33,6 @@ html {
 }
 
 #box {
-  width:750px;
-  height:220px;
   display:flex;
   flex-direction:row;
   flex-wrap: wrap;
@@ -41,8 +42,7 @@ html {
 
 div#correct, div#incorrect {
   width:350px;
-  height:200px;
-  margin:0px 10px;
+  margin:20px 10px;
   cursor: pointer;
   border-radius:10px;
   transition: width 0.5s ease-in-out;
@@ -52,12 +52,27 @@ div#correct, div#incorrect {
 div img {
   width:100%;
   border-radius:10px;
+  transition: box-shadow 0.1s ease-in-out;
+  transition: margin-top 0.1s ease-in-out;
+  margin-top:3px;
+}
+
+div img:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top:0px;
 }
 
 #message, #instruction {
   text-align:center;
 }
 
+.success{
+  color:#8CF88C;
+}
+
+.wrong {
+  color:#D40F0F;
+}
 #indicator {
   width:50px;
   height:50px;
@@ -75,7 +90,7 @@ div img {
 button {
   width:140px;
   height:60px;
-  margin: 0px 10px 0px 10px;
+  margin: 10px;
   font-size:1em;
   border-radius:5px;
   cursor:pointer;
@@ -87,7 +102,7 @@ button {
   height:30px;
   border:1px solid blue;
   border-radius:20px;
-  margin:20px auto;
+  margin:30px auto;
   display:flex;
 }
 

@@ -1,25 +1,45 @@
 var images = [
-  { correct: "https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif",
-    incorrect: "http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"},
-  { correct: "https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif",
-    incorrect: "http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"},
-  { correct: "https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif",
-    incorrect: "http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"},
-  { correct: "https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif",
-    incorrect: "http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"},
-  { correct: "https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif",
-    incorrect: "http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"},
-  { correct: "https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif",
-    incorrect: "http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"},
-  { correct: "https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif",
-    incorrect: "http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"},
-  { correct: "https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif",
-    incorrect: "http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"},
-  { correct: "https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif",
-    incorrect: "http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"},
-  { correct: "https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif",
-    incorrect: "http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"}
-  ]
+  { correct: "img/c-1.png",
+    incorrect: "img/i-1.png",
+    message: "kerning"
+  },
+  { correct: "img/c-2.png",
+    incorrect: "img/i-2.png",
+    message: "button text alignment"
+  },
+  { correct: "img/c-3.png",
+    incorrect: "img/i-3.png",
+    message: "line spacing"
+  },
+  { correct: "img/c-4.png",
+    incorrect: "img/i-4.png",
+    message: "aspect ratio scaling"
+  },
+  { correct: "img/c-5.png",
+    incorrect: "img/i-5.png",
+    message: "arrow alignment"
+  },
+  { correct: "img/c-6.png",
+    incorrect: "img/i-6.png",
+    message: "text contrast"
+  },
+  { correct: "img/c-7.png",
+    incorrect: "img/i-7.png",
+    message: "filter indicator"
+  },
+  { correct: "img/c-8.png",
+    incorrect: "img/i-8.png",
+    message: "primary action"
+  },
+  { correct: "img/c-9.png",
+    incorrect: "img/i-9.png",
+    message: "representative area"
+  },
+  { correct: "img/c-10.png",
+    incorrect: "img/i-10.png",
+    message: "text contrast"
+  }
+]
 
 var score = 0;
 var num = 0;
@@ -68,17 +88,21 @@ function random_position(){
 
 //User Pick Phase
 function correct(){
+  var msg = document.getElementById("message");
   score += 100;
   clicked = c_btn;
   not_clicked = i_btn;
-  document.getElementById("message").innerHTML = "You got it!";
+  msg.innerHTML = "<i class='fas fa-check-circle'></i> " + images[index].message;
+  msg.classList.add("success");
   review();
 }
 
 function incorrect(){
+  var msg = document.getElementById("message");
   clicked = i_btn;
   not_clicked = c_btn;
-  document.getElementById("message").innerHTML = "Sorry, try again.";
+  msg.innerHTML = "<i class='far fa-times-circle'></i> " + images[index].message;
+  msg.classList.add("wrong");
   review();
 }
 
@@ -87,7 +111,7 @@ function review(){
   c_btn.onclick = "";
   i_btn.onclick = "";
   document.getElementById("review-btns").style.display = "block";
-  clicked.style.border = "5px solid white";
+  // clicked.style.border = "5px solid white";
   not_clicked.style.transition = "width 0.3s ease-in-out";
   not_clicked.style.width = "0px";
   not_clicked.children[0].display = "none";
@@ -99,12 +123,11 @@ function keypress(e){
     compare();
   }
   else if (e.key == "Enter" ) {
-    window.onkeydown = window.onkeyup = "";
     next_level();
-  } 
+  }
 }
 function compare() {
-  if (clicked.children[0].src == images[index].incorrect) {
+  if (clicked.children[0].src.includes(images[index].incorrect)) {
   clicked.children[0].src = images[index].correct;
   }
   else {
@@ -113,10 +136,15 @@ function compare() {
 }
 
 function next_level(){
+  var msg = document.getElementById("message");
+  window.onkeydown = window.onkeyup = null;
   current_level++;
   document.getElementById("leveldisplay").innerHTML = current_level;
   document.getElementById("progress").style.width = String((current_level/10 * 100) + "%");
   document.getElementById("review-btns").style.display = "none";
+  msg.innerHTML = "Select the better design practice";
+  msg.classList.remove("wrong");
+  msg.classList.remove("success");
   clicked.style.border = "none";
   not_clicked.style.transition = "width 0s";
   not_clicked.style.width = "350px";
@@ -128,8 +156,6 @@ function next_level(){
     game_over();
   }
   else {
-    c_btn.style.border = "none";
-  document.getElementById("message").innerHTML = "";
    random_position();
    pick_new_images();
   }
