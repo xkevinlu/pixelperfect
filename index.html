@@ -1,5 +1,6 @@
 <head>
 <title>PixelPerfect Challenge</title>
+<link rel="stylesheet" type="text/css" href="button.css">
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
@@ -7,43 +8,103 @@
 <body>
 <div id ="game_view">
   <div id="scorebox">
-    <h2 id="logo">NAS UX - PixelPerfect</h2>
+    <h2 id="logo">Pixel Perfect NAS UX</h2>
     <div>
-      <i class="fas fa-coins"></i>
-      <span id="scoredisplay">000</span>
+      <i class="fas fa-money-bill-wave"></i>
+      <span id="scoredisplay">00000</span>
     </div>
   </div>
 
   <div id="box">
     <div id="correct">
     <img id="c_img" src="https://d0od-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/0ecff498c2c0fb05ee659508afa154ac-350x200.gif"></img>
-  <!--   <div id="indicator"></div> -->
     </div>
     <div id="incorrect"><img id="i_img" src="http://d3d86zle58b9ct.cloudfront.net/wp-content/uploads/sites/2/2018/05/Amazon-Echo-Alexa-350x200.jpg"</img>
     </div>
   </div>
 
-  <!-- <h3 id="instruction">Select the better design practice</h3> -->
-  <h3 id="message">Select the better design practice</h3>
+  <div id="feedback">
+    <h3 id="message">SELECT THE BETTER DESIGN</h3>
 
-  <div id='review-btns'>
-    <button id="compare">Compare</button>
-    <button id="next">Next</button>
+    <div id='review-btns'>
+
+      <div id="compare" class='wrapper'>
+        <div role='button' class='retro-btn'>
+          <a class='btn'>
+            <span class='btn-inner'>
+              <span class='content-wrapper'>
+                <span class='btn-content'>
+                  <span class='btn-content-inner' label='Compare'>
+                  </span>
+                </span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class='wrapper'>
+        <div id="next" role='button' class='retro-btn'>
+          <a class='btn'>
+            <span class='btn-inner'>
+              <span class='content-wrapper'>
+                <span class='btn-content'>
+                  <span class='btn-content-inner' label='Next'>
+                  </span>
+                </span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
   <div id="levelbox">
-    <div id="progress">Easy <span id="leveldisplay">1</span> / 10
+    <div id="progress-text"><span id="leveldisplay">PASSIVE UX 1 / 10</span></div>
+    <div id="progress">
     </div>
   </div>
+
+  <!-- <div class="flex-across">
+    <div class="gametype" id="passive">
+      <p>Passive UX</p>
+    </div>
+
+    <div class="gametype" id="shared">
+      <p>Shared Services</p>
+    </div>
+
+    <div class="gametype" id="active">
+      <p>Active UX</p>
+    </div>
+  </div> -->
+
 
 </div> <!-- Main game view -->
 
 <div id="end_view">
-  <H2>Your Final Score:<span id="final_score">0</span></h2>
-  <H2>Your Final Time:<span id="final_time">0:00</span></h2>
-  <button id="play_again">Play Again</button
+  <H2>FINAL SCORE::<span id="final_score">0</span></h2>
+  <H2>FINAL TIME:<span id="final_time">0:00</span></h2>
+  <div id="play_again" class='wrapper'>
+    <div id="next" role='button' class='retro-btn'>
+      <a class='btn'>
+        <span class='btn-inner'>
+          <span class='content-wrapper'>
+            <span class='btn-content'>
+              <span class='btn-content-inner' label='Play Again'>
+              </span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </div>
+  </div>
 </div>
 
 <script src="main.js"></script>
+<script src="button.js"></script>
 
 </body>

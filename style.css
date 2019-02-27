@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata|Press+Start+2P');
 
 html {
-  background-color:#121d38;
-  color:#FFFFFF;
-  font-family: 'Inconsolata', monospace;
+  background-color:#111C4E;
+  color:#FFF;
+  /* font-family: 'Inconsolata', monospace; */
+  font-family: 'Press Start 2P', cursive;
   padding-top:20px;
 }
 
@@ -15,13 +16,17 @@ html {
 #scorebox {
   display:flex;
   justify-content: space-between;
-  width:50%;
+  width:720px;
   margin:auto;
   font-size:1.5em;
 }
 
 #scorebox div {
   align-self:center;
+}
+
+#scorebox #scoredisplay {
+  font-size:0.7em;
 }
 
 .container {
@@ -37,12 +42,12 @@ html {
   flex-direction:row;
   flex-wrap: wrap;
   justify-content: center;
-  margin:auto;
+  margin:20px auto;
 }
 
 div#correct, div#incorrect {
   width:350px;
-  margin:20px 10px;
+  margin:10px;
   cursor: pointer;
   border-radius:10px;
   transition: width 0.5s ease-in-out;
@@ -53,17 +58,25 @@ div img {
   width:100%;
   border-radius:10px;
   transition: box-shadow 0.1s ease-in-out;
-  transition: margin-top 0.1s ease-in-out;
-  margin-top:3px;
+  /* transition: margin-top 0.1s ease-in-out;
+  margin-top:3px; */
 }
 
 div img:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-top:0px;
+  /* margin-top:0px; */
 }
 
+#feedback {
+  height:120px;
+}
 #message, #instruction {
   text-align:center;
+  font-size:0.7em;
+}
+
+#message i {
+  font-size:1.5em;
 }
 
 .success{
@@ -87,31 +100,54 @@ div img:hover {
   text-align:center;
   display:none;
 }
-button {
-  width:140px;
-  height:60px;
-  margin: 10px;
-  font-size:1em;
-  border-radius:5px;
-  cursor:pointer;
-  font-family: 'Inconsolata', monospace;
-}
 
 #levelbox {
   width:400px;
   height:30px;
-  border:1px solid blue;
+  border:1px solid #D1261C;
   border-radius:20px;
   margin:30px auto;
   display:flex;
+  position:relative;
+}
+
+#progress-text {
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:10px;
+  left:0px;
+  text-align:center;
+  font-size:0.5em;
+
 }
 
 #progress {
   width:10%;
-  background-color:blue;
+  background: -moz-linear-gradient(left, #d1261c 0%, #ff6e00 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #d1261c 0%,#ff6e00 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #d1261c 0%,#ff6e00 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   border-radius:20px;
   transition:width 0.5s ease-in-out;
   text-align:center;
+  color: #FFF;
+}
+
+.flex-across {
+  display:flex;
+  flex-direction: row;
+  width:400px;;
+  margin:auto;
+  justify-content:space-between;
+}
+
+.gametype {
+  width:100px;
+  height:80;
+  font-family: 'Inconsolata', monospace;
+  border:2px solid white;
+  text-align:center;
+  align-items:center;
 }
 
 #end_view {
