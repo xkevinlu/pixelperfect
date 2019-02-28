@@ -44,7 +44,7 @@ var images_1 = [
 var images_2 = [
   { correct: "img/c-11.png",
     incorrect: "img/i-11.png",
-    message: "List items do not dropdown"
+    message: "List items do not expand"
   },
   { correct: "img/c-12.png",
     incorrect: "img/i-12.png",
@@ -156,7 +156,7 @@ function review(){
   c_btn.onclick = "";
   i_btn.onclick = "";
   document.getElementById("review-btns").style.display = "block";
-  not_clicked.style.transition = "width 0.3s ease-in-out";
+  not_clicked.style.transition = "width 0.2s ease-in-out";
   not_clicked.style.width = "0px";
   not_clicked.style.margin = "10px 0px";
   not_clicked.children[0].display = "none";
@@ -213,7 +213,7 @@ function next_level(){
   if (current_level == 21) {
     game_over();
   }
-  
+
   document.getElementById("review-btns").style.display = "none";
   msg.innerHTML = "SELECT THE BETTER DESIGN";
   msg.classList.remove("wrong");
