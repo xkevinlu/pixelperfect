@@ -215,7 +215,6 @@ function next_level(){
   }
 
   document.getElementById("review-btns").style.display = "none";
-  msg.innerHTML = "SELECT THE BETTER DESIGN";
   msg.classList.remove("wrong");
   msg.classList.remove("success");
   clicked.style.border = "none";
