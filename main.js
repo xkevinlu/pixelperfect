@@ -184,6 +184,36 @@ function next_level(){
   var msg = document.getElementById("message");
   window.onkeydown = window.onkeyup = null;
   current_level++;
+
+  if (current_level <= 10) {
+    current_imgs = images_1;
+    pick_new_images(current_imgs);
+    document.getElementById("progress").style.width = String((current_level/10 * 100) + "%");
+    document.getElementById("leveldisplay").innerHTML = "PASSIVE UX " + current_level + " / 10";
+    msg.innerHTML = "SELECT THE BETTER DESIGN";
+    random_position();
+  }
+
+  if (10 < current_level && current_level <= 20){
+    if (count.length == 0) {
+      for (i=0;i<10;i++) {
+        count.push(i);
+      }
+    }
+    current_imgs = images_2;
+    pick_new_images(current_imgs);
+
+    document.getElementById("progress").style.width = String(((current_level-10)/10 * 100) + "%");
+    document.getElementById("leveldisplay").innerHTML = "DESIGN SYSTEM " + (current_level - 10) + " / 10";
+    msg.innerHTML = "SELECT THE DESIGN MOST CONSISTENT WITH OUR STYLE";
+    random_position();
+
+  }
+
+  if (current_level == 21) {
+    game_over();
+  }
+  
   document.getElementById("review-btns").style.display = "none";
   msg.innerHTML = "SELECT THE BETTER DESIGN";
   msg.classList.remove("wrong");
@@ -195,35 +225,6 @@ function next_level(){
   not_clicked.children[0].display = "block";
   c_btn.onclick = correct;
   i_btn.onclick = incorrect;
-
-  if (current_level <= 10) {
-    document.getElementById("progress").style.width = String((current_level/10 * 100) + "%");
-    document.getElementById("leveldisplay").innerHTML = "PASSIVE UX " + current_level + " / 10";
-    msg.innerHTML = "SELECT THE BETTER DESIGN";
-    random_position();
-    current_imgs = images_1;
-    pick_new_images(current_imgs);
-  }
-
-  if (10 < current_level && current_level <= 20){
-    if (count.length == 0) {
-      for (i=0;i<10;i++) {
-        count.push(i);
-      }
-    }
-    current_imgs = images_2;
-
-    document.getElementById("progress").style.width = String(((current_level-10)/10 * 100) + "%");
-    document.getElementById("leveldisplay").innerHTML = "DESIGN SYSTEM " + (current_level - 10) + " / 10";
-    msg.innerHTML = "SELECT THE DESIGN MOST CONSISTENT WITH OUR STYLE";
-    random_position();
-
-    pick_new_images(current_imgs);
-  }
-
-  if (current_level == 21) {
-    game_over();
-  }
 }
 
 function game_over(){
