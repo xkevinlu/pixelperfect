@@ -68,7 +68,7 @@ div img:hover {
 }
 
 #feedback {
-  height:120px;
+  height:100px;
 }
 #message, #instruction {
   text-align:center;
@@ -77,15 +77,37 @@ div img:hover {
 
 #message i {
   font-size:1.5em;
+  animation: pop-in 0.5s;
+
 }
 
 .success{
   color:#8CF88C;
+  animation: pop-in 0.5s;
 }
 
 .wrong {
   color:#D40F0F;
+  animation: pop-in 0.5s;
 }
+
+@keyframes pop-in {
+  0% {
+    opacity:0;
+    transform: scale(0.5);
+      }
+  50% {
+    opacity:0;
+  }
+  75% {
+    transform: scale(1.25);
+  }
+  100% {
+    opacity:1;
+    transform: scale(1);
+  }
+}
+
 #indicator {
   width:50px;
   height:50px;

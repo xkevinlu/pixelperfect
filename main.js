@@ -88,6 +88,7 @@ var images_2 = [
 var score = 0;
 var num = 0;
 var current_level = 1;
+var current_imgs = images_1;
 var start = Date.now();
 var time_elapsed = 0;
 var clicked;
@@ -110,7 +111,7 @@ next_btn.onclick =  next_level;
 again_btn.onclick = play_again;
 compare_btn.onmousedown = compare_btn.onmouseup = compare;
 
-pick_new_images(images_1);
+pick_new_images(current_imgs);
 random_position();
 
 function pick_new_images(set){
@@ -136,7 +137,7 @@ function correct(){
   score += 200 + Math.floor(Math.random()*100)
   clicked = c_btn;
   not_clicked = i_btn;
-  msg.innerHTML = "<i class='fas fa-check-circle'></i> " + images_1[index].message;
+  msg.innerHTML = "<i class='fas fa-check-circle'></i> " + current_imgs[index].message;
   msg.classList.add("success");
   review();
 }
@@ -145,7 +146,7 @@ function incorrect(){
   var msg = document.getElementById("message");
   clicked = i_btn;
   not_clicked = c_btn;
-  msg.innerHTML = "<i class='far fa-times-circle'></i> " + images_1[index].message;
+  msg.innerHTML = "<i class='far fa-times-circle'></i> " + current_imgs[index].message;
   msg.classList.add("wrong");
   review();
 }
@@ -171,17 +172,11 @@ function keypress(e){
   }
 }
 function compare() {
-  if (current_level > 10) {
-    var set = images_2;
+  if (clicked.children[0].src.includes(current_imgs[index].incorrect)) {
+  clicked.children[0].src = current_imgs[index].correct;
   }
   else {
-    set = images_1;
-  }
-  if (clicked.children[0].src.includes(set[index].incorrect)) {
-  clicked.children[0].src = set[index].correct;
-  }
-  else {
-  clicked.children[0].src = set[index].incorrect;
+  clicked.children[0].src = current_imgs[index].incorrect;
   }
 }
 
@@ -206,18 +201,24 @@ function next_level(){
     document.getElementById("leveldisplay").innerHTML = "PASSIVE UX " + current_level + " / 10";
     msg.innerHTML = "SELECT THE BETTER DESIGN";
     random_position();
-    pick_new_images(images_1);
+    current_imgs = images_1;
+    pick_new_images(current_imgs);
   }
 
   if (10 < current_level && current_level <= 20){
+    if (count.length == 0) {
+      for (i=0;i<10;i++) {
+        count.push(i);
+      }
+    }
+    current_imgs = images_2;
+
     document.getElementById("progress").style.width = String(((current_level-10)/10 * 100) + "%");
-    document.getElementById("leveldisplay").innerHTML = "SHARED SERVICES " + (current_level - 10) + " / 10";
+    document.getElementById("leveldisplay").innerHTML = "DESIGN SYSTEM " + (current_level - 10) + " / 10";
     msg.innerHTML = "SELECT THE DESIGN MOST CONSISTENT WITH OUR STYLE";
     random_position();
-    for (i=0;i<10;i++) {
-      count.push(i);
-    }
-    pick_new_images(images_2);
+
+    pick_new_images(current_imgs);
   }
 
   if (current_level == 21) {
@@ -229,7 +230,7 @@ function game_over(){
   document.getElementById("game_view").style.display = "none";
   document.getElementById("end_view").style.display = "block";
   document.getElementById("final_score").innerHTML = score;
-  document.getElementById("final_time").innerHTML = (Date.now() - start)/1000 + " seconds" ;
+  document.getElementById("final_time").innerHTML = Math.floor(((Date.now() - start)/1000)/60) + " minutes " + Math.floor(((Date.now() - start)/1000)%60) + " seconds" ;
 }
 
 function play_again(){
