@@ -84,6 +84,49 @@ var images_2 = [
   }
 ]
 
+var images_3 = [
+  { correct: "img/c-21.png",
+    incorrect: "img/i-21.png",
+    message: "List items do not expand"
+  },
+  { correct: "img/c-22.png",
+    incorrect: "img/i-22.png",
+    message: "Yellow is pending"
+  },
+  { correct: "img/c-23.png",
+    incorrect: "img/i-23.png",
+    message: "emphasize data"
+  },
+  { correct: "img/c-24.png",
+    incorrect: "img/i-24.png",
+    message: "default avatar"
+  },
+  { correct: "img/c-25.png",
+    incorrect: "img/i-25.png",
+    message: "blue is info"
+  },
+  { correct: "img/c-26.png",
+    incorrect: "img/i-26.png",
+    message: "grouping"
+  },
+  { correct: "img/c-27.png",
+    incorrect: "img/i-27.png",
+    message: "alignment"
+  },
+  { correct: "img/c-28.png",
+    incorrect: "img/i-28.png",
+    message: "no indentation"
+  },
+  { correct: "img/c-29.png",
+    incorrect: "img/i-29.png",
+    message: "selectable affordance"
+  },
+  { correct: "img/c-30.png",
+    incorrect: "img/i-30.png",
+    message: "flag is pending (yellow)"
+  }
+]
+
 
 var score = 0;
 var num = 0;
@@ -133,14 +176,29 @@ function random_position(){
 
 //User Pick Phase
 function correct(){
-  var msg = document.getElementById("message");
-  score += 200 + Math.floor(Math.random()*100)
   clicked = c_btn;
   not_clicked = i_btn;
+  var msg = document.getElementById("message");
   msg.innerHTML = "<i class='fas fa-check-circle'></i> " + current_imgs[index].message;
   msg.classList.add("success");
+  update_score();
   review();
 }
+
+async function update_score() {
+  var increase_by = 200 + Math.floor(Math.random()*100);
+  for (i = 0; i < increase_by; i++) {
+    console.log(score);
+    await sleep(5);
+    score++;
+    document.getElementById("scoredisplay").innerHTML = String("00000" + score).slice(-5);
+  }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 function incorrect(){
   var msg = document.getElementById("message");
@@ -152,7 +210,6 @@ function incorrect(){
 }
 
 function review(){
-  document.getElementById("scoredisplay").innerHTML = String("00000" + score).slice(-5);
   c_btn.onclick = "";
   i_btn.onclick = "";
   document.getElementById("review-btns").style.display = "block";
