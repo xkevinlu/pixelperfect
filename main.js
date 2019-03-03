@@ -1,308 +1,199 @@
-var images_1 = [
-  { correct: "img/c-1.png",
-    incorrect: "img/i-1.png",
-    message: "kerning"
-  },
-  { correct: "img/c-2.png",
-    incorrect: "img/i-2.png",
-    message: "button text alignment"
-  },
-  { correct: "img/c-3.png",
-    incorrect: "img/i-3.png",
-    message: "line spacing"
-  },
-  { correct: "img/c-4.png",
-    incorrect: "img/i-4.png",
-    message: "aspect ratio scaling"
-  },
-  { correct: "img/c-5.png",
-    incorrect: "img/i-5.png",
-    message: "arrow alignment"
-  },
-  { correct: "img/c-6.png",
-    incorrect: "img/i-6.png",
-    message: "text contrast"
-  },
-  { correct: "img/c-7.png",
-    incorrect: "img/i-7.png",
-    message: "filter indicator"
-  },
-  { correct: "img/c-8.png",
-    incorrect: "img/i-8.png",
-    message: "primary action"
-  },
-  { correct: "img/c-9.png",
-    incorrect: "img/i-9.png",
-    message: "representative area"
-  },
-  { correct: "img/c-10.png",
-    incorrect: "img/i-10.png",
-    message: "text contrast"
-  }
-]
+const levels =  [
+                new Level("Easy Tutorial", images_1.length, images_1, "SELECT THE BETTER DESIGN"),
+                new Level("Design System", images_2.length, images_2, "WHICH DESIGN IS MORE CONSISTENT WITH OUR STYLE?"),
+                new Level("Active vs Passive UX", images_3.length, images_3, "WHICH DESIGN IS BETTER FOR A POWER USER?")
+              ]
 
-var images_2 = [
-  { correct: "img/c-11.png",
-    incorrect: "img/i-11.png",
-    message: "List items do not expand"
-  },
-  { correct: "img/c-12.png",
-    incorrect: "img/i-12.png",
-    message: "Yellow is pending"
-  },
-  { correct: "img/c-13.png",
-    incorrect: "img/i-13.png",
-    message: "emphasize data"
-  },
-  { correct: "img/c-14.png",
-    incorrect: "img/i-14.png",
-    message: "default avatar"
-  },
-  { correct: "img/c-15.png",
-    incorrect: "img/i-15.png",
-    message: "blue is info"
-  },
-  { correct: "img/c-16.png",
-    incorrect: "img/i-16.png",
-    message: "grouping"
-  },
-  { correct: "img/c-17.png",
-    incorrect: "img/i-17.png",
-    message: "alignment"
-  },
-  { correct: "img/c-18.png",
-    incorrect: "img/i-18.png",
-    message: "no indentation"
-  },
-  { correct: "img/c-19.png",
-    incorrect: "img/i-19.png",
-    message: "selectable affordance"
-  },
-  { correct: "img/c-20.png",
-    incorrect: "img/i-20.png",
-    message: "flag is pending (yellow)"
-  }
-]
-
-var images_3 = [
-  { correct: "img/c-21.png",
-    incorrect: "img/i-21.png",
-    message: "List items do not expand"
-  },
-  { correct: "img/c-22.png",
-    incorrect: "img/i-22.png",
-    message: "Yellow is pending"
-  },
-  { correct: "img/c-23.png",
-    incorrect: "img/i-23.png",
-    message: "emphasize data"
-  },
-  { correct: "img/c-24.png",
-    incorrect: "img/i-24.png",
-    message: "default avatar"
-  },
-  { correct: "img/c-25.png",
-    incorrect: "img/i-25.png",
-    message: "blue is info"
-  },
-  { correct: "img/c-26.png",
-    incorrect: "img/i-26.png",
-    message: "grouping"
-  },
-  { correct: "img/c-27.png",
-    incorrect: "img/i-27.png",
-    message: "alignment"
-  },
-  { correct: "img/c-28.png",
-    incorrect: "img/i-28.png",
-    message: "no indentation"
-  },
-  { correct: "img/c-29.png",
-    incorrect: "img/i-29.png",
-    message: "selectable affordance"
-  },
-  { correct: "img/c-30.png",
-    incorrect: "img/i-30.png",
-    message: "flag is pending (yellow)"
-  }
-]
-
-
-var score = 0;
-var num = 0;
-var current_level = 1;
-var current_imgs = images_1;
-var start = Date.now();
-var time_elapsed = 0;
-var clicked;
-var not_clicked;
-var index = "";
-var count = [];
-for (i=0;i<10;i++) {
-  count.push(i);
+function Level(name, question_count, images, helptext) {
+  this.name = name;
+  this.total_questions = question_count;
+  this.images = images;
+  this.helptext = helptext;
+  this.button = null;
+  this.current_question = 1;
+  this.current_images = images[0];
+  this.count = [];
 }
 
-c_btn = document.getElementById("correct");
-i_btn = document.getElementById("incorrect");
-next_btn = document.getElementById("next");
-again_btn = document.getElementById("play_again");
-compare_btn = document.getElementById("compare");
+Level.prototype.makeBagOfImages = function() {
+    for(let i=0; i < this.total_questions; i++) {
+      this.count.push(i);
+    }
+};
 
-c_btn.onclick = correct;
-i_btn.onclick = incorrect;
-next_btn.onclick =  next_level;
-again_btn.onclick = play_again;
-compare_btn.onmousedown = compare_btn.onmouseup = compare;
+Level.prototype.pick_new_images = function(){
+    let random = Math.floor(Math.random()*this.count.length);
+    let index = this.count.splice(random,1)[0]; //Picks random number 1-10, no replace
+    this.current_images = this.images[index];
+    document.getElementById("c_img").src = this.current_images.correct;
+    document.getElementById("i_img").src = this.current_images.incorrect;
+    this.random_position();
+};
 
-pick_new_images(current_imgs);
-random_position();
+Level.prototype.random_position = function(){
+    let num = Math.random();
+    if (num >= 0.5) {
+    document.getElementById("box").style.flexDirection = "row";
+    }
+    else {
+    document.getElementById("box").style.flexDirection = "row-reverse";
+    }
+};
 
-function pick_new_images(set){
-  var random = Math.floor(Math.random()*count.length);
-  index = count.splice(random,1)[0]; //Picks random number 1-10, no replace
-  document.getElementById("c_img").src = set[index].correct;
-  document.getElementById("i_img").src = set[index].incorrect;
+Level.prototype.next_question = function(){
+    let msg = document.getElementById("message");
+    window.onkeydown = window.onkeyup = null;
+    this.current_question++;
+
+    if (this.current_question <= this.total_questions) {
+      this.pick_new_images();
+      document.getElementById("progress").style.width = String((this.current_question/this.total_questions * 100) + "%");
+      document.getElementById("leveldisplay").innerHTML = `${levels[game.current_level].name} ${this.current_question} / ${this.total_questions}`;
+      msg.innerHTML = levels[game.current_level].helptext;
+    }
+    else {
+      game.game_over();
+    }
+
+    //Reset UI to choose from two
+    document.getElementById("review-btns").style.display = "none";
+    msg.classList.remove("wrong");
+    msg.classList.remove("success");
+    inputs.clicked.style.border = "none";
+    inputs.not_clicked.style.transition = "width 0s";
+    inputs.not_clicked.style.width = "350px";
+    inputs.not_clicked.style.margin = "10px";
+    inputs.not_clicked.children[0].display = "block";
+    c_btn.onclick = inputs.correct;
+    i_btn.onclick = inputs.incorrect;
 }
 
-function random_position(){
-  num = Math.random();
-  if (num >= 0.5) {
-  document.getElementById("box").style.flexDirection = "row";
-  }
-  else {
-  document.getElementById("box").style.flexDirection = "row-reverse";
-  }
+const game = {
+  current_level:0,
+  total_levels:0,
+  init() {
+
+    c_btn = document.getElementById("correct");
+    i_btn = document.getElementById("incorrect");
+    next_btn = document.getElementById("next");
+    again_btn = document.getElementById("play_again");
+    compare_btn = document.getElementById("compare");
+
+    c_btn.onclick = inputs.correct;
+    i_btn.onclick = inputs.incorrect;
+    next_btn.onclick = function(){levels[game.current_level].next_question()};
+    compare_btn.onmousedown = compare_btn.onmouseup = compare_btn.ontouchstart = compare_btn.ontouchend = inputs.compare;
+    again_btn.onclick = game.play_again;
+
+    //Creates level selector UIs per level
+    for (let i=0; i<levels.length; i++) {
+      levels[i].button = document.createElement("div");
+      levels[i].button.innerHTML = levels[i].name;
+      levels[i].button.classList.add("gametype");
+      document.getElementById("level_select_view").appendChild(levels[i].button);
+
+      levels[i].button.onclick = function(){game.init_level(i)};
+    }
+
+  },
+  level_select_view() {
+    document.getElementById("level_select_view").style.display = "flex";
+    document.getElementById("game_view").style.display = "none";
+    document.getElementById("end_view").style.display = "none";
+  },
+  init_level(n) {
+    this.current_level = n;
+    levels[this.current_level].makeBagOfImages();
+    levels[this.current_level].pick_new_images();
+    document.getElementById("level_select_view").style.display = "none";
+    document.getElementById("game_view").style.display = "block";
+    document.getElementById("progress").style.width = String((levels[this.current_level].current_question/levels[this.current_level].total_questions * 100) + "%");
+    document.getElementById("scoredisplay").innerHTML = "00000";
+    document.getElementById("leveldisplay").innerHTML = `${levels[this.current_level].name} ${levels[this.current_level].current_question} / ${levels[this.current_level].total_questions}`;
+    document.getElementById("message").innerHTML = levels[this.current_level].helptext;
+  },
+  game_over() {
+    document.getElementById("game_view").style.display = "none";
+    document.getElementById("end_view").style.display = "block";
+    document.getElementById("final_score").innerHTML = score.value;
+    document.getElementById("final_time").innerHTML = Math.floor(((Date.now() - score.startTime)/1000)/60) + " minutes " + Math.floor(((Date.now() - score.startTime)/1000)%60) + " seconds" ;
+  },
+  play_again(){
+    score.value = 0;
+    score.startTime = Date.now();
+    levels[game.current_level].current_question = 1;
+    game.level_select_view();
+    }
 }
 
-//User Pick Phase
-function correct(){
-  clicked = c_btn;
-  not_clicked = i_btn;
-  var msg = document.getElementById("message");
-  msg.innerHTML = "<i class='fas fa-check-circle'></i> " + current_imgs[index].message;
-  msg.classList.add("success");
-  update_score();
-  review();
-}
+const inputs = {
+    clicked: null,
+    not_clicked: null,
+    correct: function(){
+      inputs.clicked = c_btn;
+      inputs.not_clicked = i_btn;
+      var msg = document.getElementById("message");
+      msg.innerHTML = "<i class='fas fa-check-circle'></i> " + levels[game.current_level].current_images.message;
+      msg.classList.add("success");
+      score.update();
+      inputs.review();
+    },
 
-async function update_score() {
-  var increase_by = 200 + Math.floor(Math.random()*100);
-  for (i = 0; i < increase_by; i++) {
-    console.log(score);
-    await sleep(5);
-    score++;
-    document.getElementById("scoredisplay").innerHTML = String("00000" + score).slice(-5);
-  }
-}
+    incorrect(){
+      var msg = document.getElementById("message");
+      inputs.clicked = i_btn;
+      inputs.not_clicked = c_btn;
+      msg.innerHTML = "<i class='far fa-times-circle'></i> " + levels[game.current_level].current_images.message;
+      msg.classList.add("wrong");
+      inputs.review();
+    },
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+    compare() {
+      if (inputs.clicked.children[0].src.includes(levels[game.current_level].current_images.incorrect)) {
+      inputs.clicked.children[0].src = levels[game.current_level].current_images.correct;
+      }
+      else {
+      inputs.clicked.children[0].src = levels[game.current_level].current_images.incorrect;
+      }
+    },
 
+    review(){
+      c_btn.onclick = "";
+      i_btn.onclick = "";
+      document.getElementById("review-btns").style.display = "block";
+      inputs.not_clicked.style.transition = "width 0.2s ease-in-out";
+      inputs.not_clicked.style.width = "0px";
+      inputs.not_clicked.style.margin = "10px 0px";
+      inputs.not_clicked.children[0].display = "none";
+      window.onkeydown = window.onkeyup = this.keypress;
+    },
 
-function incorrect(){
-  var msg = document.getElementById("message");
-  clicked = i_btn;
-  not_clicked = c_btn;
-  msg.innerHTML = "<i class='far fa-times-circle'></i> " + current_imgs[index].message;
-  msg.classList.add("wrong");
-  review();
-}
-
-function review(){
-  c_btn.onclick = "";
-  i_btn.onclick = "";
-  document.getElementById("review-btns").style.display = "block";
-  not_clicked.style.transition = "width 0.2s ease-in-out";
-  not_clicked.style.width = "0px";
-  not_clicked.style.margin = "10px 0px";
-  not_clicked.children[0].display = "none";
-  window.onkeydown = window.onkeyup = keypress;
-}
-
-function keypress(e){
-  if (e.key == "Shift") {
-    compare();
-  }
-  else if (e.key == "Enter" ) {
-    next_level();
-  }
-}
-function compare() {
-  if (clicked.children[0].src.includes(current_imgs[index].incorrect)) {
-  clicked.children[0].src = current_imgs[index].correct;
-  }
-  else {
-  clicked.children[0].src = current_imgs[index].incorrect;
-  }
-}
-
-function next_level(){
-  var msg = document.getElementById("message");
-  window.onkeydown = window.onkeyup = null;
-  current_level++;
-
-  if (current_level <= 10) {
-    current_imgs = images_1;
-    pick_new_images(current_imgs);
-    document.getElementById("progress").style.width = String((current_level/10 * 100) + "%");
-    document.getElementById("leveldisplay").innerHTML = "PASSIVE UX " + current_level + " / 10";
-    msg.innerHTML = "SELECT THE BETTER DESIGN";
-    random_position();
-  }
-
-  if (10 < current_level && current_level <= 20){
-    if (count.length == 0) {
-      for (i=0;i<10;i++) {
-        count.push(i);
+    keypress(e){
+      if (e.key == "Shift") {
+        inputs.compare();
+      }
+      else if (e.key == "Enter" ) {
+        levels[game.current_level].next_question();
       }
     }
-    current_imgs = images_2;
-    pick_new_images(current_imgs);
-
-    document.getElementById("progress").style.width = String(((current_level-10)/10 * 100) + "%");
-    document.getElementById("leveldisplay").innerHTML = "DESIGN SYSTEM " + (current_level - 10) + " / 10";
-    msg.innerHTML = "SELECT THE DESIGN MOST CONSISTENT WITH OUR STYLE";
-    random_position();
-
-  }
-
-  if (current_level == 21) {
-    game_over();
-  }
-
-  document.getElementById("review-btns").style.display = "none";
-  msg.classList.remove("wrong");
-  msg.classList.remove("success");
-  clicked.style.border = "none";
-  not_clicked.style.transition = "width 0s";
-  not_clicked.style.width = "350px";
-  not_clicked.style.margin = "10px";
-  not_clicked.children[0].display = "block";
-  c_btn.onclick = correct;
-  i_btn.onclick = incorrect;
 }
 
-function game_over(){
-  document.getElementById("game_view").style.display = "none";
-  document.getElementById("end_view").style.display = "block";
-  document.getElementById("final_score").innerHTML = score;
-  document.getElementById("final_time").innerHTML = Math.floor(((Date.now() - start)/1000)/60) + " minutes " + Math.floor(((Date.now() - start)/1000)%60) + " seconds" ;
+const score = {
+  value: 0,
+  startTime: Date.now(),
+  async update() {
+    var increase_by = 200 + Math.floor(Math.random()*100);
+    for (i = 0; i < increase_by; i++) {
+      console.log(this.value);
+      await this.counterDelay(5);
+      this.value++;
+      document.getElementById("scoredisplay").innerHTML = String("00000" + this.value).slice(-5);
+    }
+  },
+  counterDelay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 }
 
-function play_again(){
-  score = 0;
-  current_level = 1;
-  document.getElementById("progress").style.width = String((current_level/10 * 100) + "%");
-  start = Date.now();
-  for (i=0;i<10;i++) {
-    count.push(i);
-  }
-  document.getElementById("game_view").style.display = "block";
-  document.getElementById("end_view").style.display = "none";
-  document.getElementById("scoredisplay").innerHTML = "00000";
-  document.getElementById("leveldisplay").innerHTML = "PASSIVE UX " + current_level + " / 10";
-  document.getElementById("message").innerHTML = "SELECT THE BETTER DESIGN";
-  pick_new_images(images_1);
-  random_position();
-}
+game.init();
+game.level_select_view();

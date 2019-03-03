@@ -53,6 +53,7 @@ div#correct, div#incorrect {
 
 div img {
   width:100%;
+  max-height:250px;
   border-radius:10px;
   transition: box-shadow 0.1s ease-in-out;
   /* transition: margin-top 0.1s ease-in-out;
@@ -65,7 +66,7 @@ div img:hover {
 }
 
 #feedback {
-  min-height:100px;
+  min-height:120px;
 }
 #message, #instruction {
   text-align:center;
@@ -143,17 +144,21 @@ div img:hover {
   color: #FFF;
 }
 
+#level_select_view {
+  max-width:400px;
+  padding-top:100px;
+  margin:auto;
+}
 .flex-across {
   display:flex;
   flex-direction: row;
-  width:400px;;
-  margin:auto;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 
 .gametype {
+  display:flex;
   width:100px;
-  height:80;
+  height:80px;
   font-family: 'Inconsolata', monospace;
   border:2px solid white;
   text-align:center;
