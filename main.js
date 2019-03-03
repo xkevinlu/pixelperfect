@@ -1,5 +1,5 @@
 const levels =  [
-                new Level("Easy Tutorial", images_1.length, images_1, "SELECT THE BETTER DESIGN"),
+                new Level("Visual Design 1", images_1.length, images_1, "SELECT THE BETTER DESIGN"),
                 new Level("Design System", images_2.length, images_2, "WHICH DESIGN IS MORE CONSISTENT WITH OUR STYLE?"),
                 new Level("Active vs Passive UX", images_3.length, images_3, "WHICH DESIGN IS BETTER FOR A POWER USER?")
               ]
