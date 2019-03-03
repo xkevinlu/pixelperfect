@@ -22,7 +22,45 @@
 </head>
 
 <body>
-<div id="level_select_view" class="flex-across">
+<div id="init_view">
+  <h1 id="splash">Pixel Perfect NAS UX</h1>
+
+  <div class='wrapper'>
+    <div id="play_btn" role='button' class='retro-btn'>
+      <a class='btn'>
+        <span class='btn-inner'>
+          <span class='content-wrapper'>
+            <span class='btn-content'>
+              <span class='btn-content-inner' label='PLAY'>
+              </span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </div>
+  </div><br>
+
+  <div class='wrapper'>
+    <div id="level_select_btn" role='button' class='retro-btn'>
+      <a href="#level_select_modal" class='btn'>
+        <span class='btn-inner'>
+          <span class='content-wrapper'>
+            <span class='btn-content'>
+              <span class='btn-content-inner' label='LEVEL SELECT'>
+              </span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div id="level_select_modal">
+  <a href="#" class="closebtn">&times;</a>
+  <div id="level_select_view" class="flex-across">
+  </div>
 </div>
 
 
@@ -92,8 +130,8 @@
 </div> <!-- Main game view -->
 
 <div id="end_view">
-  <H2>FINAL SCORE::<span id="final_score">0</span></h2>
-  <H2>FINAL TIME:<span id="final_time">0:00</span></h2>
+  <h3>FINAL SCORE:<span id="final_score">0</span></h3>
+  <h3>FINAL TIME:<span id="final_time">0:00</span></h3>
   <div id="play_again" class='wrapper'>
     <div id="next" role='button' class='retro-btn'>
       <a class='btn'>

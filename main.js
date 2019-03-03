@@ -1,7 +1,7 @@
 const levels =  [
-                new Level("Visual Design 1", images_1.length, images_1, "SELECT THE BETTER DESIGN"),
-                new Level("Design System", images_2.length, images_2, "WHICH DESIGN IS MORE CONSISTENT WITH OUR STYLE?"),
-                new Level("Active vs Passive UX", images_3.length, images_3, "WHICH DESIGN IS BETTER FOR A POWER USER?")
+                new Level("Visual Design I", images_1.length, images_1, "SELECT THE BETTER DESIGN"),
+                new Level("Design System I", images_2.length, images_2, "WHICH DESIGN IS MORE CONSISTENT WITH OUR STYLE?"),
+                new Level("Persona I - Active vs Passive UX", images_3.length, images_3, "WHICH DESIGN IS BETTER FOR A POWER USER?")
               ]
 
 function Level(name, question_count, images, helptext) {
@@ -73,12 +73,16 @@ const game = {
   total_levels:0,
   init() {
 
+    play_btn = document.getElementById("play_btn");
+    level_select_btn = document.getElementById("level_select_btn");
     c_btn = document.getElementById("correct");
     i_btn = document.getElementById("incorrect");
     next_btn = document.getElementById("next");
     again_btn = document.getElementById("play_again");
     compare_btn = document.getElementById("compare");
 
+    play_btn.onclick = function(){game.init_level(2)};
+    level_select_btn.onclick = null;
     c_btn.onclick = inputs.correct;
     i_btn.onclick = inputs.incorrect;
     next_btn.onclick = function(){levels[game.current_level].next_question()};
@@ -90,14 +94,16 @@ const game = {
       levels[i].button = document.createElement("div");
       levels[i].button.innerHTML = levels[i].name;
       levels[i].button.classList.add("gametype");
-      document.getElementById("level_select_view").appendChild(levels[i].button);
+      document.getElementById("level_select_view").prepend(levels[i].button);
 
-      levels[i].button.onclick = function(){game.init_level(i)};
+      levels[i].button.onclick = function(){
+        location.href = "#";
+        game.init_level(i)};
     }
 
   },
-  level_select_view() {
-    document.getElementById("level_select_view").style.display = "flex";
+  init_view() {
+    document.getElementById("init_view").style.display = "block";
     document.getElementById("game_view").style.display = "none";
     document.getElementById("end_view").style.display = "none";
   },
@@ -105,7 +111,7 @@ const game = {
     this.current_level = n;
     levels[this.current_level].makeBagOfImages();
     levels[this.current_level].pick_new_images();
-    document.getElementById("level_select_view").style.display = "none";
+    document.getElementById("init_view").style.display = "none";
     document.getElementById("game_view").style.display = "block";
     document.getElementById("progress").style.width = String((levels[this.current_level].current_question/levels[this.current_level].total_questions * 100) + "%");
     document.getElementById("scoredisplay").innerHTML = "00000";
@@ -122,7 +128,7 @@ const game = {
     score.value = 0;
     score.startTime = Date.now();
     levels[game.current_level].current_question = 1;
-    game.level_select_view();
+    game.init_view();
     }
 }
 
@@ -196,4 +202,4 @@ const score = {
 }
 
 game.init();
-game.level_select_view();
+game.init_view();
