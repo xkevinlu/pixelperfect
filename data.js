@@ -107,7 +107,7 @@ const images_3 = [
   },
   { correct: "img/l3-c2.png",
     incorrect: "img/l3-i2.png",
-    message: "typical sessions"
+    message: "complex jobs to be done"
   },
   { correct: "img/l3-c3.png",
     incorrect: "img/l3-i3.png",
