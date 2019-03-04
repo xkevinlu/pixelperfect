@@ -5,7 +5,7 @@ const images_1 = [
   },
   { correct: "img/l2-c2.png",
     incorrect: "img/l2-i2.png",
-    message: "button text alignment"
+    message: "pending color"
   },
   { correct: "img/l1-c3.png",
     incorrect: "img/l1-i3.png",
