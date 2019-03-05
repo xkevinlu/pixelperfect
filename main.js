@@ -1,12 +1,12 @@
 class Level {
   constructor(name, question_count, images, helptext) {
-  this.name = name;
-  this.total_questions = question_count;
-  this.images = images;
-  this.helptext = helptext;
-  this.current_question = 0;
-  this.current_images = images[0];
-  this.count = [];
+    this.name = name;
+    this.total_questions = question_count;
+    this.images = images;
+    this.helptext = helptext;
+    this.current_question = 0;
+    this.current_images = images[0];
+    this.count = [];
   }
 
   make_bag_of_images() {
