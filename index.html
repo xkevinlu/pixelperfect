@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:title" content="Pixel Perfect Design Challenge">
 <meta property="og:description" content="NAS UX Design for Active UX, Shared Elements, and Passive UX">
-<meta property="og:image" content="img/c-4.png">
+<meta property="og:image" content="img/share-image.png">
 <meta property="og:url" content="https://xkevinlu.github.io/pixelperfect/">
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,6 +23,7 @@
 
 <body>
 <div id="init_view">
+  <div id="app">
   <h1 id="splash">Pixel Perfect NAS UX</h1>
 
   <div class='wrapper'>
@@ -56,6 +57,7 @@
   </div>
 
 </div>
+</div>
 
 <div id="level_select_modal">
   <a href="#" class="closebtn">&times;</a>
@@ -82,7 +84,8 @@
   </div>
 
   <div id="feedback">
-    <h3 id="message">SELECT THE BETTER DESIGN</h3>
+    <h3 id="instruction">SELECT THE BETTER DESIGN</h3>
+    <h3 id="message"></h3>
 
     <div id='review-btns'>
 
@@ -119,12 +122,12 @@
     </div>
 
   </div>
-
-  <div id="levelbox">
-    <div id="progress-text"><span id="leveldisplay">PASSIVE UX 1 / 10</span></div>
-    <div id="progress">
-    </div>
-  </div>
+<div class="row-centered">
+  <a href="#level_select_modal" id="levelbox">
+        <div id="progress-text"><span id="leveldisplay">PASSIVE UX 1 / 10</span></div>
+        <div id="progress"></div>
+  </a>
+</div>
 
 
 </div> <!-- Main game view -->
@@ -151,5 +154,6 @@
 <script src="data.js"></script>
 <script src="main.js"></script>
 <script src="button.js"></script>
+
 
 </body>

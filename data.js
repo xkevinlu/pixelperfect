@@ -54,7 +54,11 @@ const images_1 = [
   { correct: "img/l1-c14.png",
     incorrect: "img/l1-i14.png",
     message: "icon resolution"
-  }
+  },
+  { correct: "img/l1-c15.png",
+    incorrect: "img/l1-i15.png",
+    message: "capitalization"
+  },
 ]
 
 const images_2 = [

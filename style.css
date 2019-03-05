@@ -107,15 +107,20 @@ div img:hover {
 }
 
 #feedback {
-  min-height:120px;
+  min-height:130px;
 }
-#message, #instruction {
+#instruction {
   text-align:center;
   font-size:0.7em;
 }
 
+#message {
+  text-align:center;
+  font-size:1.25em;
+  font-family: 'Inconsolata', monospace;
+}
 #message i {
-  font-size:1.5em;
+  font-size:1em;
   animation: pop-in 0.5s;
 
 }
@@ -153,12 +158,17 @@ div img:hover {
   display:none;
 }
 
+.row-centered {
+  display:flex;
+  justify-content:center;
+  margin:30px 0px;
+}
+
 #levelbox {
-  max-width:400px;
+  min-width:400px;
   height:30px;
   border:1px solid #D1261C;
   border-radius:20px;
-  margin:30px auto;
   display:flex;
   position:relative;
 }
@@ -171,7 +181,11 @@ div img:hover {
   left:0px;
   text-align:center;
   font-size:0.5em;
+  color:#FFF;
+}
 
+#progress-text:hover {
+  color: #CCC;
 }
 
 #progress {
