@@ -115,7 +115,7 @@ const images_3 = [
   },
   { correct: "img/l3-c3.png",
     incorrect: "img/l3-i3.png",
-    message: "view"
+    message: "denser view"
   },
   { correct: "img/l3-c4.png",
     incorrect: "img/l3-i4.png",
@@ -127,11 +127,11 @@ const images_3 = [
   },
   { correct: "img/l3-c6.png",
     incorrect: "img/l3-i6.png",
-    message: "density"
+    message: "increased density"
   },
   { correct: "img/l3-c7.png",
     incorrect: "img/l3-i7.png",
-    message: "navigation"
+    message: "advanced navigation"
   },
   { correct: "img/l3-c8.png",
     incorrect: "img/l3-i8.png",
@@ -143,6 +143,6 @@ const images_3 = [
   },
   { correct: "img/l3-c10.png",
     incorrect: "img/l3-i10.png",
-    message: "customization"
+    message: "customization preferred"
   }
 ]
