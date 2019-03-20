@@ -72,7 +72,7 @@ class Level {
 
 
 const levels =  [
-                new Level("Persona I - Active UX", images_3.length, images_3, "WHICH DESIGN IS BETTER FOR AN HR PRACTITIONER OR POWER USER?"),
+                new Level("Persona I - Active UX", images_3.length, images_3, "WHICH DESIGN BETTER SERVES THE PRACTITIONER OR POWER USER?"),
                 new Level("Design System I", images_2.length, images_2, "WHICH DESIGN IS MORE CONSISTENT WITH OUR STYLE?"),
                 new Level("Visual Design I", images_1.length, images_1, "SELECT THE BETTER DESIGN"),
               ]

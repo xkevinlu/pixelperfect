@@ -115,11 +115,11 @@ const images_3 = [
   },
   { correct: "img/l3-c3.png",
     incorrect: "img/l3-i3.png",
-    message: "denser view"
+    message: "active navigation"
   },
   { correct: "img/l3-c4.png",
     incorrect: "img/l3-i4.png",
-    message: "workflow language"
+    message: "active UX tasks"
   },
   { correct: "img/l3-c5.png",
     incorrect: "img/l3-i5.png",
@@ -131,7 +131,7 @@ const images_3 = [
   },
   { correct: "img/l3-c7.png",
     incorrect: "img/l3-i7.png",
-    message: "advanced navigation"
+    message: "active navigation"
   },
   { correct: "img/l3-c8.png",
     incorrect: "img/l3-i8.png",

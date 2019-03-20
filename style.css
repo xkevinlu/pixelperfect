@@ -112,12 +112,14 @@ div img:hover {
 #instruction {
   text-align:center;
   font-size:0.7em;
+    line-height:2em;
 }
 
 #message {
   text-align:center;
   font-size:1.25em;
   font-family: 'Inconsolata', monospace;
+
 }
 #message i {
   font-size:1em;
