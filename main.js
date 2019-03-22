@@ -61,8 +61,8 @@ class Level {
   inputs.not_clicked.style.transition = "width 0s";
   inputs.not_clicked.style.width = "350px";
   inputs.not_clicked.style.margin = "10px";
-  } catch {
-  console.log("Initial load no reset")
+  } catch(error) {
+  console.log("Initial load, no items yet." + error);
   }
   c_btn.onclick = inputs.correct;
   i_btn.onclick = inputs.incorrect;
@@ -75,7 +75,7 @@ const levels =  [
                 new Level("Persona I - Active UX", images_3.length, images_3, "WHICH DESIGN BETTER SERVES THE PRACTITIONER OR POWER USER?"),
                 new Level("Design System I", images_2.length, images_2, "WHICH DESIGN IS MORE CONSISTENT WITH OUR STYLE?"),
                 new Level("Visual Design I", images_1.length, images_1, "SELECT THE BETTER DESIGN"),
-              ]
+              ];
 
 
 const game = {
@@ -94,7 +94,8 @@ const game = {
 
       levels[i].button.onclick = function(){
         location.href = "#";
-        game.init_level(i)};
+        game.init_level(i);
+      };
     }
 
   },
@@ -149,7 +150,7 @@ const game = {
     levels[game.current_level].current_question = 0;
     game.main_menu_view();
     }
-}
+};
 
 
 const inputs = {
@@ -164,11 +165,11 @@ const inputs = {
       again_btn = document.getElementById("play_again");
       compare_btn = document.getElementById("compare");
 
-      play_btn.addEventListener("click", function(){game.init_level(0)});
+      play_btn.addEventListener("click", function(){game.init_level(0);});
       level_select_btn.onclick = null;
       c_btn.onclick = inputs.correct;
       i_btn.onclick = inputs.incorrect;
-      next_btn.onclick = function(){levels[game.current_level].next_question()};
+      next_btn.onclick = function(){levels[game.current_level].next_question();};
       compare_btn.onmousedown = compare_btn.onmouseup = compare_btn.ontouchstart = compare_btn.ontouchend = inputs.compare;
       again_btn.onclick = game.play_again;
     },
@@ -208,7 +209,7 @@ const inputs = {
         levels[game.current_level].next_question();
       }
     },
-}
+};
 
 
 inputs.init();
