@@ -1,3 +1,12 @@
+/*jshint esversion: 8 */
+const play_btn = document.getElementById("play_btn");
+const level_select_btn = document.getElementById("level_select_btn");
+const c_btn = document.getElementById("correct");
+const i_btn = document.getElementById("incorrect");
+const next_btn = document.getElementById("next");
+const again_btn = document.getElementById("play_again");
+const compare_btn = document.getElementById("compare");
+
 class Level {
   constructor(name, question_count, images, helptext) {
     this.name = name;
@@ -72,6 +81,7 @@ class Level {
 
 
 const levels =  [
+                new Level("Form Elements I", images_4.length, images_4, "SELECT THE BETTER DESIGN"),
                 new Level("Persona I - Active UX", images_3.length, images_3, "WHICH DESIGN BETTER SERVES THE PRACTITIONER OR POWER USER?"),
                 new Level("Design System I", images_2.length, images_2, "WHICH DESIGN IS MORE CONSISTENT WITH OUR STYLE?"),
                 new Level("Visual Design I", images_1.length, images_1, "SELECT THE BETTER DESIGN"),
@@ -129,7 +139,7 @@ const game = {
   },
   async update_score() {
     var increase_by = 200 + Math.floor(Math.random()*50);
-    for (i = 0; i < increase_by; i++) {
+    for (let i = 0; i < increase_by; i++) {
       await this.counterDelay(5);
       this.score++;
       document.getElementById("scoredisplay").innerHTML = String("00000" + this.score).slice(-5);
@@ -157,13 +167,6 @@ const inputs = {
     clicked: null,
     not_clicked: null,
     init(){
-      play_btn = document.getElementById("play_btn");
-      level_select_btn = document.getElementById("level_select_btn");
-      c_btn = document.getElementById("correct");
-      i_btn = document.getElementById("incorrect");
-      next_btn = document.getElementById("next");
-      again_btn = document.getElementById("play_again");
-      compare_btn = document.getElementById("compare");
 
       play_btn.addEventListener("click", function(){game.init_level(0);});
       level_select_btn.onclick = null;

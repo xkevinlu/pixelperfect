@@ -48,6 +48,32 @@ html {
   cursor: pointer;
 }
 
+#level_select_view {
+  max-width:400px;
+  padding-top:100px;
+  margin:auto;
+}
+.flex-across {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.gametype {
+  display:flex;
+  width:100px;
+  height:80px;
+  font-family: 'Inconsolata', monospace;
+  border:2px solid white;
+  text-align:center;
+  align-items:center;
+}
+
+.gametype:hover {
+  cursor:pointer;
+  background-color:white;
+  color:black;
+}
 
 #game_view {
   margin:auto;
@@ -199,33 +225,6 @@ div img:hover {
   transition:width 0.5s ease-in-out;
   text-align:center;
   color: #FFF;
-}
-
-#level_select_view {
-  max-width:400px;
-  padding-top:100px;
-  margin:auto;
-}
-.flex-across {
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.gametype {
-  display:flex;
-  width:100px;
-  height:80px;
-  font-family: 'Inconsolata', monospace;
-  border:2px solid white;
-  text-align:center;
-  align-items:center;
-}
-
-.gametype:hover {
-  cursor:pointer;
-  background-color:white;
-  color:black;
 }
 
 #end_view {

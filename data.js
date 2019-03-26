@@ -146,3 +146,54 @@ const images_3 = [
     message: "customization preferred"
   }
 ]
+
+const images_4 = [
+  { correct: "img/l4-c1.png",
+    incorrect: "img/l4-i1.png",
+    message: "Flow with vertical momentum"
+  },
+  { correct: "img/l4-c2.png",
+    incorrect: "img/l4-i2.png",
+    message: "Top align labels"
+  },
+  { correct: "img/l4-c3.png",
+    incorrect: "img/l4-i3.png",
+    message: "Group labels with their inputs"
+  },
+  { correct: "img/l4-c4.png",
+    incorrect: "img/l4-i4.png",
+    message: "Show all selection options if few"
+  },
+  { correct: "img/l4-c5.png",
+    incorrect: "img/l4-i5.png",
+    message: "Resist using placeholder text as labels"
+  },
+  { correct: "img/l4-c6.png",
+    incorrect: "img/l4-i6.png",
+    message: "Scannability of radio / checkboxes"
+  },
+  { correct: "img/l4-c7.png",
+    incorrect: "img/l4-i7.png",
+    message: "Make CTAs descriptive"
+  },
+  { correct: "img/l4-c8.png",
+    incorrect: "img/l4-i8.png",
+    message: "Specify errors inline"
+  },
+  { correct: "img/l4-c9.png",
+    incorrect: "img/l4-i9.png",
+    message: "Primary and secondary actions"
+  },
+  { correct: "img/l4-c10.png",
+    incorrect: "img/l4-i10.png",
+    message: "Show basic helper text"
+  },
+  { correct: "img/l4-c11.png",
+    incorrect: "img/l4-i11.png",
+    message: "Use field length as an affordance"
+  },
+  { correct: "img/l4-c12.png",
+    incorrect: "img/l4-i12.png",
+    message: "Explicitly denote optional fields"
+  }
+]
